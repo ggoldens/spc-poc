@@ -17,7 +17,6 @@ let localStream;
 let rtcPeerConnection;
 let isCaller;
 
-// Let's do this
 const socket = io();
 
 const createDomVideoElement = () => {
@@ -70,7 +69,6 @@ startBtn.onclick = () => {
   divNewPublisher.style = "display: block;";
 };
 
-// message handlers
 socket.on('created', async () => {
   const localVideo = createDomVideoElement();
   videoCallDiv.appendChild(localVideo);
@@ -80,13 +78,13 @@ socket.on('created', async () => {
   isCaller = true;
 });
 
-socket.on('joined', function () {
+socket.on('joined', () => {
   console.log('ready to subscribe!');
   divNewPublisher.style = "display: none;";
   socket.emit('ready');
 });
 
-socket.on('candidate', function (event) {
+socket.on('candidate', (event) => {
   const candidate = new RTCIceCandidate({
     sdpMLineIndex: event.label,
     candidate: event.candidate
@@ -106,7 +104,7 @@ socket.on('ready', async () => {
   }
 });
 
-socket.on('offer', function (event) {
+socket.on('offer', (event) => {
   if (!isCaller) {
     if (!rtcPeerConnection) {
       rtcPeerConnection = new RTCPeerConnection(iceServers);
@@ -131,6 +129,6 @@ socket.on('offer', function (event) {
   }
 });
 
-socket.on('answer', function (event) {
+socket.on('answer', (event) => {
   rtcPeerConnection.setRemoteDescription(new RTCSessionDescription(event));
 });
