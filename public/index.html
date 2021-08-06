@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<head>
+  <title>Single Peer Connection POC</title>
+</head>
+<body>
+  <h1>WebRTC Single Peer Connection POC</h1>
+
+  <div id="startPanel">
+    <button id="startBtn">Start</button>
+  </div>
+
+  <div id="newPublisher" style="display:none">
+    <button id="newPublisherBtn">Add new Publisher</button>
+  </div>
+
+  <div id="videoCall" style="display:none"></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="client.js"></script>
+</body>
+</html>
